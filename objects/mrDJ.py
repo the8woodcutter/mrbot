@@ -88,24 +88,26 @@ class MUCBot(slixmpp.ClientXMPP):
             download_command = "youtube-dl -x --audio-format mp3 --audio-quality 0 --embed-thumbnail --add-metadata --restrict-filenames -i %(url)s -exec %(inner_cormmand)s" % { "url": url, "inner_command": inner_command }
             try:
                 os.system(download_command)
+            except:
+                pass # WARNING!  THIS WAS ADDED TO FIX AN IRRELEVANT ERROR WILL CAUSE AN ERROR!!
 
     ### now play it on a stream with vlc or mpv ###
 
 
 
-# This: enables this module/file to be executed as a script on cli:
-if __name__ == '__main__':
-	logging.basicConfig(level=DEBUG, format='%(levelname)-8s %(message)s')
+# # This: enables this module/file to be executed as a script on cli:
+# if __name__ == '__main__':
+# 	logging.basicConfig(level=DEBUG, format='%(levelname)-8s %(message)s')
 
-    # What other XEP's can we tinker with?
-    xmpp = MUCBot("mrbot@toofast.vip", os.system('echo $MRBOTPASSWD'), "partyfolk@chat.toofast.vip", "mrDJ")
-    xmpp.register_plugin('xep_0030') # Service Discovery
-    xmpp.register_plugin('xep_0045') # Multi-User Chat
-    xmpp.register_plugin('xep_0199') # XMPP Ping
+#     # What other XEP's can we tinker with?
+#     xmpp = MUCBot("mrbot@toofast.vip", os.system('echo $MRBOTPASSWD'), "partyfolk@chat.toofast.vip", "mrDJ")
+#     xmpp.register_plugin('xep_0030') # Service Discovery
+#     xmpp.register_plugin('xep_0045') # Multi-User Chat
+#     xmpp.register_plugin('xep_0199') # XMPP Ping
 
-    # HTTP Service Discovery?
-    # pubsub microblog digests in news muc on tri-hourly rate?
-    # Avatar manipulations?  Sqlite3 or text based gzip encrypted db including bin data for avatars w/ mimes
+#     # HTTP Service Discovery?
+#     # pubsub microblog digests in news muc on tri-hourly rate?
+#     # Avatar manipulations?  Sqlite3 or text based gzip encrypted db including bin data for avatars w/ mimes
 
-    xmpp.connect()
-    xmpp.process()
+#     xmpp.connect()
+#     xmpp.process()

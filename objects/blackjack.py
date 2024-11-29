@@ -66,7 +66,7 @@ class BlackJack():
 
 	def hand_value(self, hand, hit):
 		self.hand = hand
-		face_cards = ["10"."J","Q","K"]
+		face_cards = ["10","J","Q","K"]
 		ace = "A"
 		if ininstance(hand, list):
 			for cd in hand:
@@ -126,7 +126,7 @@ class BlackJack():
 		if hit_or_stay in hits:
 			player_card_3 = self.give_card()
 			c = player_card_3[1:]
-			face_cards = ["10"."J","Q","K"]
+			face_cards = ["10","J","Q","K"]
 			ace = "A"
 			
 			if c in face_cards:
