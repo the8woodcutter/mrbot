@@ -1,7 +1,9 @@
 #!/usr/bin/env /usr/bin/python3
-from getpass import getpass
-from argparse import ArgumentParser
-from ipaddress import ip_address
+## ^ this is in the even that on your debian system is package `python3-slixmpp` and mrBot is run without venv...
+
+# from getpass import getpass
+# from argparse import ArgumentParser
+# from ipaddress import ip_address
 
 import slixmpp
 import logging
@@ -10,9 +12,10 @@ import random
 import re
 import os
 import sys
-import ipaddress
-import socket
-import urllib3
+
+# import ipaddress
+# import socket
+# import urllib3
 
 
 class mrBot(slixmpp.ClientXMPP):
@@ -99,102 +102,117 @@ class mrBot(slixmpp.ClientXMPP):
             db['txt'] = ""
             txt = db.get('txt')
 
-# # =====================================================================================================================
-# # mrBot ATTACK function:
-#     # setting the trigger:
+# =====================================================================================================================
+# mrBot ATTACK function:
+    # setting the trigger:
 
-#     # set to NOT Attack:
-#         if "mrBot Whoa Boy!" == body and mucnick != self.nick:
-#             db['i'] = 0
-#             i = db.get('i')
-#             self.send_message(mto=frm, mbody=f"/me Stares blankly at {mucnick}", mtype=mt)
+    # set to NOT Attack:
+        if mucnick != self.nick:
+            if "mrBot Whoa Boy!" == body:
+                db['i'] = 0
+                i = db.get('i')
+                while True:
+                    self.send_message(mto=frm, mbody=f"/me Stares blankly at {mucnick}", mtype=mt)
+                    break
 
-#         for x in nicklist:
-#             hint = f"mrBot Free {x}!"
-#             if hint == body and x != self.nick:
-#                 victims.remove(x)
-#                 db['victims'] = victims
-#                 victims = db['victims']
-#                 self.send_message(mto=frm, mbody="/me runs over to the other side of the yard as if chasing a tennis ball that never was ... ..", mtype=mt)
+        if mucnick != self.nick:
+            for x in nicklist:
+                hint = f"mrBot Free {x}!"
+                if hint == body and x != self.nick:
+                    victims.remove(x)
+                    db['victims'] = victims
+                    victims = db['victims']
+                    while True:
+                        self.send_message(mto=frm, mbody="/me runs over to the other side of the yard as if chasing a tennis ball that never was ... ..", mtype=mt)
+                        break
 
-#     # set TO ATTACK!
-#         if "mrBot Attack!" == body and mucnick in admins and mucnick != self.nick:
-#             db['i'] = 1
-#             i = db.get('i')
-#             self.send_message(mto=frm, mbody="Set to ATTACK >:]", mtype=mt)
+    # set TO ATTACK!
+        if mucnick != self.nick:
+            if mucnick in admins:
+                if "mrBot Attack!" == body:
+                    db['i'] = 1
+                    i = db.get('i')
+                    while True:
+                        self.send_message(mto=frm, mbody="Set to ATTACK >:]", mtype=mt)
+                        break
 
-#         for x in nicklist:
-#             hint = f"mrBot Attack {x}!"
-#             if hint == body and mucnick in admins and x != self.nick:
-#                 victims.append(x)
-#                 db['victims'] = victims
-#                 victims = db['victims']
-#                 self.send_message(mto=frm, mbody=f"{x} grrrrrr", mtype=mt)
+        if mucnick != self.nick:
+            for x in nicklist:
+                hint = f"mrBot Attack {x}!"
+                if hint == body and mucnick in admins and x != self.nick:
+                    victims.append(x)
+                    db['victims'] = victims
+                    victims = db['victims']
+                    while True:
+                        self.send_message(mto=frm, mbody=f"{x} grrrrrr", mtype=mt)
+                        break
 
-#     # TESTING Attack Status:
-#         if "Test The Attack!" == body and mucnick != self.nick:
-#             if i == 0:
-#                 self.send_message(mto=frm, mbody=f"Parameter:{i}: No Attack.", mtype=mt)
-#             if i == 1:
-#                 self.send_message(mto=frm, mbody=f"Parameter:{i}: ATTACK!!", mtype=mt)
+    # TESTING Attack Status:
+        if mucnick != self.nick:
+            if "Test The Attack!" == body:
+                if i == 0:
+                    while True:
+                        self.send_message(mto=frm, mbody=f"Parameter:{i}: No Attack.", mtype=mt)
+                        break
+                if i == 1:
+                    while True:
+                        self.send_message(mto=frm, mbody=f"Parameter:{i}: ATTACK!!", mtype=mt)
+                        break
 
-#         if "mrBot's Victims" == body and mucnick != self.nick:
-#             self.send_message(mto=frm, mbody=f"I will chew on: {victims}", mtype=mt)
+        if mucnick != self.nick:
+            if "mrBot's Victims" == body:
+                while True:
+                    self.send_message(mto=frm, mbody=f"I will chew on: {victims}", mtype=mt)
+                    break
 
-#     # if the trigger is 1 then Attack:
-#         if i == 1 and mucnick in victims and mucnick != self.nick:
-#             self.send_message(mto=frm, mbody=f"{mucnick}: {arf}", mtype=mt)
+    # if the trigger is 1 then Attack:
+        if mucnick != self.nick:
+            if i == 1 and mucnick in victims:
+                while True:
+                    self.send_message(mto=frm, mbody=f"{mucnick}: {arf}", mtype=mt)
+                    break
 
+# =====================================================================================================================
+# Other responses:
+        if mucnick != self.nick:
+            if "Oi" in body or "oi" in body:
+                ois = re.findall(r'Oi', body)
+                if ois[0]:
+                    semd = []
+                    for x in ois:
+                        semd.append("oi")
+                    semd = " ".join(semd)
+                    while True:
+                        self.send_message(mto=frm, mbody=semd, mtype=mt)
+                        break
 
-# # =====================================================================================================================
-# # Other responses:
-#         if mucnick != self.nick:
-#             if "Oi" in body or "oi" in body:
-#                 ois = re.findall(r'Oi', body)
-#                 if ois[0]:
-#                     semd = []
-#                     for x in ois:
-#                         semd.append("oi")
-#                     semd = " ".join(semd)
-#                     while True:
-#                         self.send_message(mto=frm, mbody=semd, mtype=mt)
-#                         break
-#         while True:
-#             try:
-#                 if mucnick != self.nick:
-#                     if "Yay" in body or "yay" == body:
-#                         self.send_message(mto=frm, mbody="YAY!", mtype=mt)
-#                         break
-#             except:
-#                 break
+        if mucnick != self.nick:
+            if "Yay" in body or body == "yay" or body == "yay!":
+                while True:
+                    self.send_message(mto=frm, mbody="YAY! :D", mtype=mt)
+                    break
 
-#         greetings = ["hello mrBot","Hello mrBot","Hi mrBot","hi mrBot","pats mrBot"]
-#         while True:
-#             try:
-#                 if mucnick != self.nick:
-#                     for x in greetings:
-#                         if x in body:
-#                             self.send_message(mto=frm, mbody=f"{mucnick}: Arf :P", mtype=mt)
-#                             break
-#                     break
-#             except:
-#                 break
+        greetings = ["hello mrBot","Hello mrBot","Hi mrBot","hi mrBot","pats mrBot"]
 
-#         while True:
-#             try:
-#                 if "test" == body and mucnick != self.nick:
-#                     self.send_message(mto=frm, mbody="Test Success!", mtype=mt)
-#                     break
-#             except:
-#                 break
-#         while True:
-#             try:
-#                 if mucnick != self.nick:
-#                     if "nicklist" == body and mucnick in admins:
-#                         self.send_message(mto=frm, mbody=nicklist_string, mtype=mt)
-#                         break
-#             except:
-#                 break
+        if mucnick != self.nick:
+            for x in greetings:
+                if x in body:
+                    while True:
+                        self.send_message(mto=frm, mbody=f"{mucnick}: Arf :P", mtype=mt)
+                        break
+
+        if mucnick != self.nick:
+            if body == "test" or body == "Test" or "testing" in body:
+                while True:
+                    self.send_message(mto=frm, mbody="Test Success!", mtype=mt)
+                    break
+
+        if mucnick != self.nick:
+            if mucnick in admins:
+                if "nicklist" == body:
+                    while True:
+                        self.send_message(mto=frm, mbody=nicklist_string, mtype=mt)
+                        break
 
 # # =====================================================================================================================
 # # chunk was here function:
@@ -238,6 +256,7 @@ class mrBot(slixmpp.ClientXMPP):
 #                 while True:
 #                     self.send_message(mto=frm, mbody=msgbody, mtype=mt)
 #                     break
+
 
 # # =====================================================================================================================
 # # yell function:
