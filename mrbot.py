@@ -177,14 +177,17 @@ class mrBot(slixmpp.ClientXMPP):
         if mucnick != self.nick:
             if "Oi" in body or "oi" in body:
                 ois = re.findall(r'Oi', body)
-                if ois[0]:
-                    semd = []
-                    for x in ois:
-                        semd.append("oi")
-                    semd = " ".join(semd)
-                    while True:
-                        self.send_message(mto=frm, mbody=semd, mtype=mt)
-                        break
+                try:
+                    if ois[0]:
+                        semd = []
+                        for x in ois:
+                            semd.append("oi")
+                        semd = " ".join(semd)
+                        while True:
+                            self.send_message(mto=frm, mbody=semd, mtype=mt)
+                            break
+                except:
+                    pass
 
         if mucnick != self.nick:
             if "Yay" in body or body == "yay" or body == "yay!":
