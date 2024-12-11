@@ -217,6 +217,12 @@ class mrBot(slixmpp.ClientXMPP):
                         self.send_message(mto=frm, mbody=nicklist_string, mtype=mt)
                         break
 
+        if mucnick != self.nick:
+            if body == "r.i.p.":
+                while True:
+                    self.send_message(mto=frm, mbody="😭", mtype=mt)
+                    break
+
 # # =====================================================================================================================
 # # chunk was here function:
 #         def chunk_was_here(self):
