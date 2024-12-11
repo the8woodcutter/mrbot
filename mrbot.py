@@ -247,35 +247,39 @@ class mrBot(slixmpp.ClientXMPP):
 #                 self.send_message(mto=frm, mbody="No mofoes, AAAAAAAAND SAFE!!!", mtype=mt)
 #                 break
 
-#         if "How many mofos?" == body and mucnick != self.nick:
-#             mofos_count = len(nicklist)
-#             if mofoes == True:
-#                 msgbody = f"{mofos_count} mofos present with possible mofoes >_>  ...  suspicious"
-#                 while True:
-#                     self.send_message(mto=frm, mbody=msgbody, mtype=mt)
-#                     break
-#             elif mofoes == False:
-#                 msgbody = f"{mofos_count} mofos present"
-#                 while True:
-#                     self.send_message(mto=frm, mbody=msgbody, mtype=mt)
-#                     break
+        if mucnick != self.nick:
+            if "How many mofos?" == body:
+                mofos_count = len(nicklist)
+                while True:
+                    self.send_message(mto=frm, mbody=f"{mofos_count} mofos present", mtype=mt)
+                    break
+                # if mofoes == True:
+                #     msgbody = f"{mofos_count} mofos present with possible mofoes >_>  ...  suspicious"
+                #     while True:
+                #         self.send_message(mto=frm, mbody=msgbody, mtype=mt)
+                #         break
+                # elif mofoes == False:
+                #     msgbody = f"{mofos_count} mofos present"
+                #     while True:
+                #         self.send_message(mto=frm, mbody=msgbody, mtype=mt)
+                #         break
 
 
-# # =====================================================================================================================
-# # yell function:
-#         if mucnick != self.nick:
-#             rgx = re.match(r'[A-Z\ \,\!\.\?\:]{22,}', body) 
-#             rnd = random.randint(1,7)
-#             if rgx:
-#                 if rnd == 2 or rnd == 3 or rnd == 5:
-#                     rgx = rgx[0]
-#                     l = len(rgx)
-#                     r = random.randint(9,33)
-#                     a = l + r
-#                     a = ("A" * a) + ("!" * r)
-#                     while True:
-#                         self.send_message(mto=frm, mbody=a, mtype=mt)
-#                         break
+# =====================================================================================================================
+# yell function:
+        if mucnick != self.nick:
+            rgx = re.match(r'[A-Z\ \,\!\.\?\:]{22,}', body) 
+            rnd = random.randint(1,7)
+            if rgx:
+                if rnd == 2 or rnd == 3 or rnd == 5:
+                    rgx = rgx[0]
+                    l = len(rgx)
+                    r = random.randint(9,33)
+                    a = l + r
+                    a = ("A" * a) + ("!" * r)
+                    while True:
+                        self.send_message(mto=frm, mbody=a, mtype=mt)
+                        break
 
 # # =====================================================================================================================
 # # dice function:
